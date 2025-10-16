@@ -1,0 +1,91 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  background: black;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-juego {
+  width: 400px;
+  background: #1b1e24;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tarjeta-jugador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2b2f38;
+  border-radius: 15px 15px 0 0;
+  padding: 1rem;
+  text-align: left;
+}
+
+.info-jugador {
+  flex: 3;
+  margin-left: 1rem;
+}
+
+.icono-jugador {
+  flex: 1;
+  background-image: url("data/img/icono-generico.png");
+  min-width: 100px;
+  min-height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+
+.escudos-equipos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 1rem;
+  background: #2b2f38;
+  border-radius: 0 0 15px 15px;
+}
+
+.escudo-equipo {
+  background-image: url("data/img/icono-generico.png");
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.input-respuesta {
+  padding: 1rem;
+}
+
+#respuesta {
+  background-color: #1b1e24;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+#pedir-pista {
+  background-color: #00ffcc;
+  color: #1b1e24;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+}
+
+#pedir-pista:hover {
+  background-color: #00e6b8;
+  transform: scale(1.05);
+}

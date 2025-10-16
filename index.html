@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el jugador</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <div class="contenedor-juego">
+        <h1>ADIVINA EL JUGADOR</h1>
+        <div class="tarjeta-jugador">
+            <div class="icono-jugador"></div>
+            <div class="info-jugador">
+                <p>Nacionalidad: <span id="nacionalidad">?</span></p>
+                <p>Posición: <span id="posicion">?</span></p>
+                <p>Año de debut: <span id="debut">?</span></p>
+            </div>
+        </div>
+        <div class="escudos-equipos">
+            <div class="escudo-equipo" id="escudo-1"></div>
+            <div class="escudo-equipo" id="escudo-2"></div>
+            <div class="escudo-equipo" id="escudo-3"></div>
+        </div>
+        <div class="input-respuesta">
+            <input type="text" id="respuesta" list="sugerencias" placeholder="Escribe el nombre aquí">
+            <datalist id="sugerencias"></datalist>
+            <button id="pedir-pista">Pedir pista</button>
+        </div>
+    </div>
+</body>
+</html>
