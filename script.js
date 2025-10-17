@@ -56,17 +56,18 @@ function revelarPista(jugador, pistasDisponibles) {
             document.getElementById("debut").textContent = jugador.anioDebut;
             break;
         default:
-            // Si se seleciono un equipo.
             if (pista.startsWith("equipo-")) {
                 const index = parseInt(pista.split("-")[1]);
                 const nombreEquipo = jugador.equipos[index];
                 const urlEscudo = `data/img/escudos/escudo-${nombreEquipo}.jpg`;
 
-                const escudos = document.querySelectorAll(".escudo-equipo");
-                for (let escudo of escudos) {
-                    const fondo = getComputedStyle(escudo).backgroundImage;
-                    if (fondo.includes("icono-generico.png")) {
-                        escudo.style.backgroundImage = `url("${urlEscudo}")`;
+                const cartas = document.querySelectorAll(".carta-equipo");
+
+                for (let carta of cartas) {
+                    if (!carta.classList.contains("flip")) {
+                        const dorso = carta.querySelector(".carta-dorso");
+                        dorso.style.backgroundImage = `url("${urlEscudo}")`;
+                        carta.classList.add("flip");
                         break;
                     }
                 }
@@ -77,7 +78,6 @@ function revelarPista(jugador, pistasDisponibles) {
     // Verificamos si quedan pistas disponibles.
     if (pistasDisponibles.length === 0) {
         document.getElementById("pedir-pista").disabled = true;
-        document.getElementById("respuesta").disabled = true;
     }
 }
 
@@ -107,12 +107,35 @@ function verificarRespuesta(nombreIngresado, jugador, pistasDisponibles) {
     const respuesta = nombreIngresado.trim().toLowerCase();
     const nombreCorrecto = jugador.nombre.toLowerCase();
 
+    const botonPista = document.getElementById("pedir-pista");
+    const inputJugador = document.getElementById("respuesta");
+
     // Valida la respuesta del jugador.
     if (respuesta === nombreCorrecto) {
-        document.getElementById("pedir-pista").disabled = true;
-        document.getElementById("respuesta").disabled = true;
+        revelarJugador(jugador);
+        botonPista.disabled = true;
+        inputJugador.disabled = true;
     } else {
-        console.log("❌ No es correcto. Seguí intentando.");
-        revelarPista(jugador, pistasDisponibles);
+        if (pistasDisponibles.length === 0){
+            revelarJugador(jugador);
+            inputJugador.disabled = true;
+        } else {
+            revelarPista(jugador, pistasDisponibles);
+            inputJugador.value = "";
+        }
     }
+}
+
+function revelarJugador(jugador) {
+    const contenedor = document.querySelector(".icono-jugador");
+    const dorso = contenedor.querySelector(".icono-dorso");
+
+    const nombreFormateado = jugador.nombre.toLowerCase().replace(/\s+/g, "-");
+    const urlImagen = `data/img/jugadores/${nombreFormateado}.jpg`;
+
+    dorso.style.backgroundImage = `url("${urlImagen}")`;
+    contenedor.classList.add("flip");
+
+    const inputJugador = document.getElementById("respuesta");
+    inputJugador.value = `${jugador.nombre}`;
 }

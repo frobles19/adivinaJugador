@@ -31,30 +31,80 @@ body {
 }
 
 .icono-jugador {
-  flex: 1;
-  background-image: url("data/img/icono-generico.png");
-  min-width: 100px;
-  min-height: 100px;
+  width: 100px;
+  height: 100px;
+  perspective: 600px;
+  position: relative;
+}
+
+.icono-frente, .icono-dorso {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
   background-size: cover;
   background-position: center;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.icono-frente {
+  background-image: url("data/img/icono-generico.png");
+}
+
+.icono-dorso {
+  transform: rotateY(180deg);
+}
+
+.icono-jugador.flip .icono-frente {
+  transform: rotateY(180deg);
+}
+
+.icono-jugador.flip .icono-dorso {
+  transform: rotateY(360deg);
 }
 
 .escudos-equipos {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 2rem 1rem;
+  padding: 1rem 0;
   background: #2b2f38;
   border-radius: 0 0 15px 15px;
 }
 
-.escudo-equipo {
-  background-image: url("data/img/icono-generico.png");
+.carta-equipo {
   width: 80px;
   height: 80px;
+  perspective: 600px; /* Profundidad del giro */
+  position: relative;
+}
+
+.carta-frente, .carta-dorso {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  transition: transform 0.6s ease;
+}
+
+.carta-frente {
+  background-image: url("data/img/escudo-generico.png");
+}
+
+.carta-dorso {
+  transform: rotateY(180deg);
+}
+
+.carta-equipo.flip .carta-frente {
+  transform: rotateY(180deg);
+}
+
+.carta-equipo.flip .carta-dorso {
+  transform: rotateY(360deg);
 }
 
 .input-respuesta {
@@ -69,6 +119,11 @@ body {
   padding: 5px;
   font-size: 16px;
   outline: none;
+}
+
+#respuesta:disabled {
+  color: #888;
+  border-bottom: 2px solid #555;
 }
 
 #pedir-pista {
@@ -88,4 +143,11 @@ body {
 #pedir-pista:hover {
   background-color: #00e6b8;
   transform: scale(1.05);
+}
+
+#pedir-pista:disabled {
+  background-color: #444;
+  color: #aaa;
+  box-shadow: none;
+  transform: none;
 }
